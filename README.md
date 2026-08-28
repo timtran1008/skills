@@ -35,6 +35,26 @@ in Plan and Judge.
 
 ## What's here
 
+### Plan
+- **[tna](./skills/plan/tna/SKILL.md)** — training needs analysis with a gatekeeper on the
+  front. Diagnoses whether the request is actually a skill gap before any design starts,
+  because most training requests are not.
+
+### Do
+- **[source-notes](./skills/do/source-notes/SKILL.md)** — three-layer notes on any source:
+  what you can use from it, a full extraction, and a recall sheet. For sources you intend to
+  act on.
+- **[tldr](./skills/do/tldr/SKILL.md)** — the same extraction with the advice removed. Notes
+  only, grouped by the argument the source is making, never by transcript order.
+- **[ai-lib](./skills/do/ai-lib/SKILL.md)** — save a reference to your library in one command:
+  a distilled card, an index row, and whatever came out of it worth acting on.
+- **[handoff](./skills/do/handoff/SKILL.md)** — compact a dying session into one briefing a
+  fresh agent can start from, in any tool.
+- **[pmlt](./skills/do/pmlt/SKILL.md)** — design a training session on the Convince ·
+  Introduce · Practise · Commit arc, calibrated to the room and red-teamed as a participant.
+- **[traps](./skills/do/traps/SKILL.md)** — a five-beat micro-loop for teaching one technique
+  as a story: the trap, why it felt right, what it cost, the fix, the fix applied.
+
 ### Judge
 - **[for-review](./skills/judge/for-review/SKILL.md)** — package a finished deliverable so a
   *different* AI can red-team it cold, with a reviewer contract that stops it folding the
@@ -47,12 +67,31 @@ in Plan and Judge.
   you've been saving. One verdict each, a reason required, stamped so it never resurfaces.
 
 ### Workspace
+
+The daily loop. `checkin` opens the day, `checkout` closes it, and the three completion tiers
+sit in between — pick the lightest that fits what you just finished.
+
 - **[setup](./skills/workspace/setup-timtran-skills/SKILL.md)** — run once. Creates the
   substrate the other skills read from.
+- **[checkin](./skills/workspace/checkin/SKILL.md)** — scans every project, recovers what
+  yesterday left unfinished, and proposes a time-blocked day. Writes nothing unapproved.
+- **[checkout](./skills/workspace/checkout/SKILL.md)** — resolves every unfinished item into
+  done, superseded, dropped, or carried, and *persists the carries* so tomorrow still has them.
+- **[sync](./skills/workspace/sync/SKILL.md)** — writes the session into the project files:
+  progress, history, learnings, and what the new facts just killed.
+- **[log-it](./skills/workspace/log-it/SKILL.md)** — full-record completion. All three
+  trackers, plus the permanent history entry.
+- **[done](./skills/workspace/done/SKILL.md)** — lightest completion. Marks it done, sweeps
+  for what it made untrue, stops.
+
+The piece worth stealing even if you use none of the rest is the
+**[supersession sweep](./skills/workspace/sync/supersession-sweep.md)**: adding new information
+is only half the write, and the other half — closing what that information just killed — is the
+half every tracking system skips.
 
 ### Coming
-`plan/` and `do/` are next: `grill-me`, `reverse-plan`, `structure-first`, `scaffold`,
-`source-notes`, `handoff`. Work in progress lives in [`skills/in-progress/`](./skills/in-progress/).
+`plan/` fills out next: `grill-me`, `reverse-plan`, `structure-first`, `scaffold`. Work in
+progress lives in [`skills/in-progress/`](./skills/in-progress/).
 
 ## Install
 

@@ -25,6 +25,7 @@ I'll create, in <cwd>:
   today-tasks.md          — one file, today only
   projects/               — one folder per active piece of work
   library/INDEX.md        — index of notes and sources you capture
+  archive/today-tasks/    — where each day's plan goes when it is replaced
 
 Nothing existing is touched. Proceed, or tell me what to change?
 ```
@@ -100,7 +101,10 @@ Ask which projects to create. Do not guess from folder names.
 
 ## Step 4 — today-tasks.md
 
-One file at the root. Today only. It gets rewritten daily, not appended to.
+One file at the root. Today only. It gets rewritten daily, not appended to — which is exactly
+why `checkout` persists anything unfinished back into a project's `context.md` before the
+rewrite. Also create `archive/today-tasks/`, where `checkin` moves each outgoing day plan. A
+day plan is a record, not garbage: it gets moved, never deleted.
 
 ```markdown
 # Today — <date>
@@ -113,10 +117,15 @@ One file at the root. Today only. It gets rewritten daily, not appended to.
 Drain this at the end of the day. See PRINCIPLES.md §8.>
 ```
 
-## Step 5 — library/INDEX.md
+## Step 5 — library/
 
 Only if the user captures notes from books, talks, papers, or articles. If they don't, skip
 it and say so.
+
+Create `library/INDEX.md`, plus `library/source-notes/` — where `source-notes` and `tldr` write
+— and, if they want the reference library, the subfolders `ai-lib` classifies into
+(`skills/`, `prompting/`, `strategy/`, `tools/`, `cases/`, `coaching/`). Only create the
+subfolders they'll actually use; an empty taxonomy is worse than none.
 
 ```markdown
 # Library Index
