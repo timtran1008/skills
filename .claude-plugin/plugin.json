@@ -1,0 +1,12 @@
+{
+  "name": "plan-do-judge",
+  "version": "0.1.0",
+  "description": "Plan, Do, Judge - an operating system for office work, as agent skills.",
+  "author": {
+    "name": "Tim Tran",
+    "url": "https://github.com/timtran1008"
+  },
+  "homepage": "https://github.com/timtran1008/skills",
+  "license": "MIT",
+  "keywords": ["skills", "productivity", "office", "l-and-d", "red-team", "qa"]
+}
