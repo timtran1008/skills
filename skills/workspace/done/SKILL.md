@@ -96,7 +96,8 @@ If the session produced something that should change how future work on **this p
 done — a stakeholder preference, an audience behaviour, a revealed constraint, a process
 adjustment — append to `## Learnings` in its `context.md`: `- [YYYY-MM-DD] {one-liner}`. Append
 only. Corrections to how the *agent* behaves in general do not go here; those belong in your
-instruction file, via `/checkout`.
+instruction file — and they get there via `/checkout`, which queues them and only proposes one
+after it has recurred three times.
 
 If the session produced writing in your voice that you then edited, append the draft→final
 delta to your taste log with a `**Rule:**` line. **A rule is admissible only if two readers

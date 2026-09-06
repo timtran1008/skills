@@ -5,7 +5,8 @@ description: >
   End of day. Resolves every unfinished item into done, superseded, dropped, expired, or
   carried —
   persisting the carries so they survive tomorrow's overwrite — sweeps context files for rot,
-  and proposes rule changes for your agent instruction file.
+  and queues rule changes for your agent instruction file, surfacing one only after it recurs
+  three times.
 ---
 
 # Checkout
@@ -146,26 +147,52 @@ get a committed date?"* is the step working. If the answer to "what does this bl
 superseded." Silence is how this step goes unperformed: it starts as one advisory sentence and
 nothing ever checks that it fired.
 
-## Step 2 — Propose rule changes
+## Step 2 — Queue rule changes. Do not propose them yet
 
 Read your agent instruction file — `CLAUDE.md`, `AGENTS.md`, whatever your tool loads on every
 session.
 
 > **This step is the only channel for changing it.** The agent never self-writes always-loaded
-> behavioural memory and never auto-graduates a rule into it. It suggests here; you approve;
-> Step 3 applies. Other learning types route elsewhere and must not come here: project-scoped
-> learnings go to that project's `## Learnings` via `/done`.
+> behavioural memory and never auto-graduates a rule into it. Other learning types route
+> elsewhere and must not come here: project-scoped learnings go to that project's
+> `## Learnings` via `/done`.
+
+⛔ **A proposal is never put to you on its first or second sighting.** It is written silently to a
+queue file — `rule-proposals.md`, beside your agent instruction file — and reaches you **only on
+its third**.
+
+**Why the threshold exists.** A single session's incident reads exactly like a rule while you are
+still inside the session. Propose on sight and the always-loaded file fills with one-offs, and
+every future session pays to load a rule for something that happened once. **Recurrence is the
+only cheap evidence that a correction is a rule rather than an incident.**
 
 Re-read the session for corrections and rejections. For each one that is a **reusable rule**
-rather than a one-off fix, propose a specific edit:
+rather than a one-off fix:
+
+1. **Match it against the queue before writing anything.** Same underlying rule ⇒ same entry, even
+   when the wording is nothing alike. Increment `Count`, append the date and one line on how it
+   recurred. **Matching by meaning is the whole mechanic** — a near-duplicate filed as a fresh
+   entry never reaches 3, and the gate fails silently and permanently.
+2. **Genuinely new ⇒ append at `Count: 1`.** Say nothing this session.
+3. **`Count: 3` ⇒ surface it in Step 3.**
+
+Three sightings means **three separate sessions**, not three restatements inside one. One incident
+described three ways is still one incident.
+
+⚠️ **This gates proposals the agent generates. It does not gate you.** A rule you state yourself is
+a ruling — written where it belongs the moment you make it. It never enters the queue and never
+waits for a third sighting.
+
+**Queue entry format:**
 
 ```
-**File:** CLAUDE.md
-**Section:** [section]
-**Change:** Add / Update / Remove
+### [one-line rule]
+**Count:** 1
+**Seen:** [date]
+**Proposed section:** [section]
 **Supersedes:** [the existing rule, quoted, with its section — or `nothing`]
-**Content:**
-[exact text]
+**Content:** [exact text]
+**Evidence:** [what happened, concretely enough that a later session can match against it]
 ```
 
 **The `Supersedes` line is required, not optional.** Suggestions here are additive by nature,
@@ -174,9 +201,18 @@ directions — and unlike a stale task, a contradictory rule misfires on *every*
 Before proposing, search the file for the rule the new one narrows, replaces, or contradicts.
 Name it, quote it, and propose the edit **to it** rather than a second rule beside it.
 
+**Never delete a queue entry.** Applied and rejected ones stay, struck through with a dated cause.
+A rejected proposal that vanishes is re-proposed from scratch by the next session that trips over
+the same thing.
+
 ## Step 3 — Approve, then apply
 
-Ask which suggestions to apply. Apply only what was approved. Confirm.
+**Only entries that reached `Count: 3` are put to you.** Present each in the Step 2 format with its
+three dates, ask which to apply, apply only what was approved, confirm — then mark the entry
+`SURFACED [date]` with your answer recorded on it.
+
+If nothing reached 3, say so in one line and move on. **A checkout with an empty proposal step is
+the normal case, not a failure.**
 
 ## Step 4 — Context hygiene
 
@@ -215,4 +251,9 @@ Resolutions land in `context.md` the normal way. Do not nag item by item beyond 
 ## Step 6 — Report and stop
 
 Name every file written and what changed in each. State the Step 1c counts. State the
-supersession result even when it is "nothing". Then stop — no next task proposed.
+supersession result even when it is "nothing". **State the proposal queue in one line — how many
+entries were incremented, how many were newly filed, how many reached 3.** A silent queue is how
+this mechanic decays: entries stop being matched, nothing ever reaches 3, and the absence of
+proposals reads as "no rules needed" rather than "the gate stopped working".
+
+Then stop — no next task proposed.
