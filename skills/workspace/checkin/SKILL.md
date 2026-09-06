@@ -116,7 +116,7 @@ five-day carry as if it were fresh.
 
 ## Step 0d — Supersession check, before anything is carried
 
-**Read [supersession-sweep.md](../sync/supersession-sweep.md) first — it is binding.**
+**Read [supersession-sweep.md](../done/supersession-sweep.md) first — it is binding.**
 
 Step 0c carries by default and treats silence as carry. That is right for items nobody has news
 about, and wrong for items the scans just proved dead. Carrying a dead item puts it in the day
@@ -134,7 +134,7 @@ against the four shapes: entailment, replacement, reversal, duplicate.
 
 - **Entailed dead** — the carried item cannot still be open, given what another line proves. Do
   not schedule it as live work. It goes into the **"Ruled dead — write owed"** section of
-  `today-tasks.md` at Step 3, with the killing line quoted and its `path:line`. `/sync` or
+  `today-tasks.md` at Step 3, with the killing line quoted and its `path:line`. `/done` or
   `/checkout` does the actual write.
 - **Likely dead** — ask, in one line, inside the plan proposal. **If it is ruled dead during
   the check-in, it joins the same section.** A ruling heard here is never left in chat.
@@ -246,4 +246,4 @@ Then:
 > **The "Ruled dead — write owed" section is mandatory** whenever Step 0d found something, or
 > something was ruled dead during this session. Each entry carries the item text, the killing
 > line quoted, its `path:line`, and the date. Omit the section only when both are empty. Until
-> `/sync` or `/checkout` drains it, this is the *only* durable record of that ruling.
+> `/done` or `/checkout` drains it, this is the *only* durable record of that ruling.

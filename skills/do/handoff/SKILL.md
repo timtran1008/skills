@@ -19,7 +19,7 @@ It is a **document writer, not a state keeper.** It deliberately updates no trac
 | Skill | Does |
 |---|---|
 | `/handoff` | Writes the baton. Touches no source files. |
-| `/sync` | Persists this session's progress to the project files. **Run this first** if state isn't saved. |
+| `/done` | Persists this session's progress to the project files. **Run this first** if state isn't saved. |
 
 **Invoke:** `/handoff <what the next session is for>`
 
@@ -89,11 +89,11 @@ Print the path and a two or three line summary of what was captured. **Do not pr
 full draft in chat** — it goes in the file precisely so it does not go in a context window.
 
 Then stop. Nothing marked done, no tracking file updated, no next task proposed. If session
-state clearly is not persisted yet, one line — *"State not saved — run `/sync` before you
+state clearly is not persisted yet, one line — *"State not saved — run `/done` before you
 close this session?"* — but do not act on it.
 
 ```
 ✓ Wrote projects/acme-rollout/handoff-2026-06-04-day3-prep.md
 Captured: current state, resume at the Day 3 outline, 2 gotchas, refs to context.md + log.md.
-State not saved this session — run /sync before closing?
+State not saved this session — run /done before closing?
 ```

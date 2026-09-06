@@ -68,8 +68,8 @@ in Plan and Judge.
 
 ### Workspace
 
-The daily loop. `checkin` opens the day, `checkout` closes it, and the three completion tiers
-sit in between — pick the lightest that fits what you just finished.
+The daily loop. `checkin` opens the day, `checkout` closes it, and `done` handles everything
+you finish in between.
 
 - **[setup](./skills/workspace/setup-timtran-skills/SKILL.md)** — run once. Creates the
   substrate the other skills read from.
@@ -77,15 +77,17 @@ sit in between — pick the lightest that fits what you just finished.
   yesterday left unfinished, and proposes a time-blocked day. Writes nothing unapproved.
 - **[checkout](./skills/workspace/checkout/SKILL.md)** — resolves every unfinished item into
   done, superseded, dropped, or carried, and *persists the carries* so tomorrow still has them.
-- **[sync](./skills/workspace/sync/SKILL.md)** — writes the session into the project files:
-  progress, history, learnings, and what the new facts just killed.
-- **[log-it](./skills/workspace/log-it/SKILL.md)** — full-record completion. All three
-  trackers, plus the permanent history entry.
-- **[done](./skills/workspace/done/SKILL.md)** — lightest completion. Marks it done, sweeps
-  for what it made untrue, stops.
+- **[done](./skills/workspace/done/SKILL.md)** — the only completion command. Writes all three
+  trackers plus the history entry, captures the session's learnings, and sweeps for what the
+  completion just made untrue.
+
+This used to be three skills — a light `done`, a `log-it` that also wrote history, and a `sync`
+that captured learnings. Picking a tier meant deciding, before you knew whether the session had
+produced anything worth keeping, how much of it to keep. The cheap option always won and the
+learnings went unrecorded. One command, no choice.
 
 The piece worth stealing even if you use none of the rest is the
-**[supersession sweep](./skills/workspace/sync/supersession-sweep.md)**: adding new information
+**[supersession sweep](./skills/workspace/done/supersession-sweep.md)**: adding new information
 is only half the write, and the other half — closing what that information just killed — is the
 half every tracking system skips.
 

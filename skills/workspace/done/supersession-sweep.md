@@ -1,6 +1,6 @@
 # The supersession sweep
 
-Binding on `/sync`, `/log-it`, `/done`, and the reconcile step of `/checkout`.
+Binding on `/done` and the reconcile step of `/checkout`.
 
 **Adding new information is only half the write. The other half is closing what that
 information just killed.** A tracker that only ever grows is a tracker you have to reconcile

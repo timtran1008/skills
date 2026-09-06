@@ -2,9 +2,9 @@
 name: checkout
 disable-model-invocation: true
 description: >
-  End of day. Runs /sync, then resolves every unfinished item into done, superseded, dropped,
-  or carried — persisting the carries so they survive tomorrow's overwrite — sweeps context
-  files for rot, and proposes rule changes for your agent instruction file.
+  End of day. Resolves every unfinished item into done, superseded, dropped, or carried —
+  persisting the carries so they survive tomorrow's overwrite — sweeps context files for rot,
+  and proposes rule changes for your agent instruction file.
 ---
 
 # Checkout
@@ -29,12 +29,14 @@ unfinished item that lives only there is **gone**. Persisting it is what makes t
 Propose exactly one next action per turn, concrete: the sub-steps and the output, never the
 project name alone.
 
-## Step 1 — Run `/sync` first
+## Step 1 — Log every project touched today
 
-**Before anything else.** This writes the session's progress and history into the project
-files. Skip it and tomorrow's check-in reports stale tasks as live work.
+**Before anything else.** Write the session's progress and history into the project files —
+`context.md` and `log.md` for each project this session touched. Skip it and tomorrow's
+check-in reports stale tasks as live work.
 
-`/sync` writes the session narrative. Checkout does not duplicate it and must not.
+Checkout used to delegate this to a separate `/sync` command. It no longer exists: completion
+is one command (`/done`), and checkout logs what `/done` did not.
 
 ## Step 1a — Run the scans
 
@@ -86,8 +88,7 @@ position is not the outcome.
 
 **First, drain "Ruled dead — write owed".** If `today-tasks.md` carries that section, each
 entry is a ruling already made with no write behind it. Close each — strikethrough, named
-cause, date, in the owning `context.md` — and clear the section. Same job as `/sync` Step
-2a-pre; whichever runs first does it. **Never re-ask for these rulings.**
+cause, date, in the owning `context.md` — and clear the section. **Never re-ask for these rulings.**
 
 Then resolve **every** remaining unchecked item into one of four outcomes. None may be left
 sitting only in `today-tasks.md`:
@@ -95,7 +96,7 @@ sitting only in `today-tasks.md`:
 - **Done** (confirmed by the user) → `[x]` in `today-tasks.md`, updated in the owning
   `context.md` and `log.md`.
 - **Superseded** (settled by the evidence, not the user) →
-  **read [supersession-sweep.md](../sync/supersession-sweep.md).** Scan 1 returns supersession
+  **read [supersession-sweep.md](../done/supersession-sweep.md).** Scan 1 returns supersession
   evidence; this outcome is where it lands, and without it that evidence silently defaults to
   carry. Test against the four shapes. An **entailed** item closes in this pass and is reported
   for reversal; a merely **likely** one joins the residue list. Close as strikethrough, named
@@ -146,7 +147,7 @@ session.
 > **This step is the only channel for changing it.** The agent never self-writes always-loaded
 > behavioural memory and never auto-graduates a rule into it. It suggests here; you approve;
 > Step 3 applies. Other learning types route elsewhere and must not come here: project-scoped
-> learnings go to that project's `## Learnings` via `/sync`.
+> learnings go to that project's `## Learnings` via `/done`.
 
 Re-read the session for corrections and rejections. For each one that is a **reusable rule**
 rather than a one-off fix, propose a specific edit:

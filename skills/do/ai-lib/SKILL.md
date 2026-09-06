@@ -1,5 +1,6 @@
 ---
 name: ai-lib
+disable-model-invocation: true
 description: >
   Save an article, video, or reference to your library with minimal friction — a distilled
   card, an index row, and whatever came out of it that is worth acting on. Built for reading
