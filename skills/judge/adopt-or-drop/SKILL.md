@@ -35,19 +35,33 @@ Notes older than the stamping habit are invisible to the default window and reac
 with an explicit `since` date. Never imply the backlog doesn't exist — honour a wider window
 when asked.
 
+> **Why these rules are shaped this way → [`CALIBRATION.md`](./CALIBRATION.md).** Read it
+> before changing a rule; the case usually explains why the obvious-looking edit is wrong.
+
 ## Step 2 — Under-mining check
 
-Before reviewing, compare each note's source length against how much was actually captured.
+**Measure Inventory depth, not the number of kept ideas.** Under a strict gate a well-run
+source routinely yields two or three survivors, or none — counting survivors would fire the
+under-mining flag on every source that worked. What a thin *Inventory* shows is that the source
+was never properly read.
 
-- **A long or flagship source with a thin note** — a three-hour talk yielding two lines, a
-  300-page book yielding a paragraph → flag it *before* reviewing:
-  > "⚠ `[file]` is a [X]-hour source with only [N] captured items — likely under-mined.
+Compare each note's stated source length against its `Inventory` section.
+
+- **Thin Inventory on a long or flagship source** — over ~90 minutes of video, over ~15 pages,
+  or a marquee thinker → flag it *before* reviewing:
+  > "⚠ `[file]` is a [X]-hour source with only [N] inventoried items — likely under-mined.
   > Re-read before reviewing, or review as-is?"
-- **A richly captured note with few keepers** — do **not** flag. The source was mined properly
-  and the ideas didn't clear the bar. That is the system working, not laziness.
+- **Rich Inventory, few or zero kept ideas** — do **not** flag. The source was mined properly
+  and the ideas didn't clear the gate. That is the system working, not laziness.
+- Notes written before the Inventory convention have no such section; fall back to counting
+  kept ideas for those.
 
-Give the user the choice before they pass verdict. A verdict on a badly-mined note is a
-verdict on your note-taking, not on the source.
+Give the user the choice before they pass verdict. A verdict on a badly-mined note is a verdict
+on your note-taking, not on the source.
+
+⛔ **Never pitch the `Inventory` section.** It is preserved reference, not a review queue.
+Surfacing it as a list of candidates is exactly the failure the buckets exist to stop — the
+source already did that reviewing.
 
 ## Step 3 — Check what already happened
 

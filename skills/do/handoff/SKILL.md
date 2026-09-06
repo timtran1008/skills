@@ -41,6 +41,9 @@ short kebab-case slug from the Mission.
 ```markdown
 # <Topic> — Handoff (YYYY-MM-DD)
 
+**Expires:** YYYY-MM-DD (the day after this doc's date). After that this is residue — bin it;
+the durable state lives in `context.md` / `log.md`.
+
 One sentence: pick up here in a fresh session. <Why this work started, if not obvious.>
 
 ## Mission
@@ -82,6 +85,25 @@ optional — the document must work fully for a receiver with no skills at all.
 4. **Plain relative paths**, no backticks and no absolute paths, so they stay clickable.
 5. **Judgment over completeness.** Capture what the next agent needs to continue, not
    everything that happened. Cut the noise — that is the entire point of the skill.
+
+## Step 1b — Lifecycle: the doc expires the next day
+
+**A handoff expires daily.** It is a baton, not a document — written for one next session, and
+dead once the day it was written for has passed. Anything worth keeping beyond that belongs in
+`context.md` and `log.md`, which is `/done`'s job, not this file's.
+
+Every handoff carries the `**Expires:**` line under the title, dated the day after it was
+written. One exception: a handoff still named as a `**Source:**` by a live derived artifact
+stays until that artifact is finished.
+
+⚠️ **This skill writes nothing but the one doc.** It does not retire its own past output — it
+cannot delete and must not move files. Expired handoffs are collected by whatever cleanup pass
+you run, which surfaces them for a ruling.
+
+**The expiry line is what makes that ruling mechanical instead of a judgment call.** Before it
+existed, fifteen handoffs across six projects had piled up over three months with no retirement
+rule, because the generator defined none. A file with no stated lifespan is a file nobody can
+throw away.
 
 ## Step 2 — Report and stop
 

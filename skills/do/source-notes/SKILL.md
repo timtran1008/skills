@@ -54,6 +54,18 @@ timestamps will not match the URL you were given. Never use a clip or a highligh
 
 If nothing works: stop and ask for the transcript. Do not proceed on metadata.
 
+**Never report "this video has no captions" as a fact — the tools cannot establish it.** A tool
+returning nothing means only that *it* got nothing, and the two causes take opposite responses:
+a genuinely caption-less video needs a transcript from the user, while a broken or throttled
+fetch needs fixing and costs them nothing. Report the failure, name which tools failed and how,
+and say the cause is undetermined. **Never upgrade "we got nothing" to "there is nothing."**
+
+This is worth the paragraph because it was learned expensively: three extractors all reported
+failure on a video that had a full auto-caption track the whole time. One was aborting on format
+selection before it ever wrote the subtitle file, and an hour of retries then got caption
+*listing* throttled to zero rows on every client — which looks identical to genuine absence.
+Rapid repeated retries are what cause the throttle. Diagnose, do not hammer.
+
 ## Pre-flight — has this been done already?
 
 Search your notes folder before extracting: the video ID, the URL's domain and path, or a

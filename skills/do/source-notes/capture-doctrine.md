@@ -52,8 +52,19 @@ You are the deliverer; the audience is a room or a feed.
 2. **Novel to your audience** — not already in `library/INDEX.md`. Not "new to the world",
    which is unverifiable and not the question. The question is *not yet taught by you*.
 3. **A non-technical person can do it with tools they already have** — no command line, no
-   API key, no repo, no self-hosting. **This gate does the heaviest lifting.** It is the one
-   that kills the interesting-to-you-only material.
+   API key, no repo, no self-hosting — **and can reach it on a free tier.**
+   **This gate does the heaviest lifting.** It is the one that kills the
+   interesting-to-you-only material.
+
+   Ask the free-tier half concretely: *can someone on a free account do this today?* If the
+   demo needs a paid tier — ChatGPT Plus/Pro, Claude Max, a paid Gemini — it fails. Record it
+   in Inventory with the tier named. Do not bend it into a "preview" of what they might buy.
+
+   This half exists because a whole source died on it: a ten-use-case head-to-head comparison
+   cleared recency, novelty and landing, and was tossed outright because it compared *paid*
+   versions to an audience that is overwhelmingly on free accounts. Browser use and voice-thread
+   orchestration are both real capabilities and both sit behind a subscription. **The strongest
+   item in a source can be the reason the whole source fails this gate.**
 4. **It lands somewhere real** — a session actually in the calendar, or a channel you
    actually publish to.
 

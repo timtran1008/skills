@@ -2,7 +2,8 @@
 name: checkout
 disable-model-invocation: true
 description: >
-  End of day. Resolves every unfinished item into done, superseded, dropped, or carried —
+  End of day. Resolves every unfinished item into done, superseded, dropped, expired, or
+  carried —
   persisting the carries so they survive tomorrow's overwrite — sweeps context files for rot,
   and proposes rule changes for your agent instruction file.
 ---
@@ -101,8 +102,14 @@ sitting only in `today-tasks.md`:
   carry. Test against the four shapes. An **entailed** item closes in this pass and is reported
   for reversal; a merely **likely** one joins the residue list. Close as strikethrough, named
   cause, date, in both files. Never delete.
-- **Dropped** (explicitly cancelled) → remove it, and note the drop in the owning `context.md`
-  if it was tracked there.
+- **Dropped** (explicitly cancelled by you) → remove it, and note the drop in the owning
+  `context.md` if it was tracked there.
+- **Expired** (flagged by Scan 3 as untouched for more than 14 days, and still untouched) →
+  close it **without asking**, as:
+  `⛔ ~~item~~ **KILLED (expired YYYY-MM-DD — no activity since <date>; reverse by restoring `- [ ]`)**`
+  The reversal instruction is part of the close, not a courtesy. An item nobody has touched in
+  two weeks is not a commitment, it is a residue, and asking about each one is how the list got
+  long enough to need this rule.
 - **Otherwise → carry forward.** Ensure the item exists as an open `- [ ]` line in its project's
   `## Next actions`. Add it if missing. **This is what makes it survive.**
 
@@ -190,7 +197,15 @@ it cannot catch is the line **no new fact ever arrived about** — the request t
 fizzled. That residue is what this is for, which is why neither replaces the other.
 
 1. Take Scan 3's output: every dated line in an active project older than 14 days.
-2. Surface them as **one list**, and ask per line: **still true / update / drop?**
+2. **Kill them, do not poll them.** Anything Scan 3 flagged that is still untouched closes as
+   **expired**, with the strikethrough, the named cause, the date, and the restore instruction.
+   Report the list and the count; do not ask per line.
+
+> **Why this flipped from asking to killing.** Asking "still true / update / drop?" per line
+> puts the work of defending a stale item back on you, every single evening, for items you have
+> already ignored for a fortnight. In practice that means everything gets carried, because
+> carrying is one keystroke cheaper than adjudicating. The kill is reversible and the reversal
+> is written into the closing line; the poll was not reversible, it was just slow.
 
 > **This sweep is uncapped** too. Every flagged line appears in the single list; none are held
 > back for a later turn.

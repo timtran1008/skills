@@ -200,6 +200,32 @@ turns platitudes into usable critique. Always append:
 | A cross-reference or handoff | Does the deliverable work if the reader has only this document? |
 | Anything you flagged as uncertain | Is the uncertainty visible in the deliverable, or hidden in the brief? |
 
+### Required — the Return Handoff, pasted LAST in Section 3
+
+The review has to come *back*. Without an explicit instruction the reviewer ends on a verdict,
+and you are left re-explaining the whole gate by hand to whichever agent picks it up. Close the
+loop: the run ends by handing over a ready-to-paste line, not by trailing off.
+
+Fill in the real paths and topic slug, then paste verbatim as the last block of Section 3:
+
+```
+RETURN HANDOFF — do this after your review, without being asked.
+
+End your reply with the two things below, in this order, and nothing after them.
+
+(1) A fenced block containing your review in full, ready for me to save as:
+    {return-path}
+
+(2) A fenced block containing exactly this line, for me to paste back:
+
+    /for-review triage {package-path} — findings returned at {return-path}
+    Sort every finding into the 4-way triage before acting on any of it. Do not accept-all.
+    Reviewer's own headline: [your one-line verdict]
+    Findings: [n] critical / [n] major / [n] minor. Concession-rate self-audit: [state it].
+
+Fill the bracketed parts from your actual review. Do not alter the first two lines.
+```
+
 ## Step 4 — Assemble and save
 
 ```markdown
@@ -220,15 +246,47 @@ turns platitudes into usable critique. Always append:
 Save as `for-review-{topic}-{YYYY-MM-DD}.md` next to the deliverable. Topic is 2-4 lowercase
 hyphenated words. **Never overwrite** — append `-v2`, `-v3` if the name exists.
 
-## Step 5 — Hard brake
+**Reserve the return path:** `review-returned-{topic}-{YYYY-MM-DD}.md` — do **not** create the
+file. Naming it now is what makes both sides agree on where the review lands. It takes the same
+`-v2` suffix as the package. Both paths go into the Return Handoff block above and into the
+outbound line in Step 5.
 
-Show the file. Ask: **"Review package ready. Want to check it before sending?"**
+## Step 5 — Emit the outbound line, then hard brake
+
+End the reply with ONE copy-paste block. Keep it compact — the package file carries the
+substance; this line only points at it and says what to do.
+
+```markdown
+Package: [package path]
+Return path (reserved, not yet created): [return path]
+
+Paste to the reviewer — attach the package file with it:
+
+/red-team [package-file-name] — [2-6 word topic]
+Attached file is self-contained; you have no prior context and should ask for none.
+Read Section 3 first: the Reviewer Contract and Finding Contract are binding, and the
+Return Handoff at the end tells you exactly what to send back.
+Red-team Section 2 against Section 1. Do not verify anyone's prior verdict — there isn't one.
+```
+
+Then show the file. Ask: **"Review package ready. Want to check it before sending?"**
 Mark nothing done. Propose no next step.
+
+**Both legs are yours to carry.** The agent does not send to the reviewer, and the reviewer does
+not write to disk. You move the file and the line each way; the skill's job is to make each move
+a single paste.
 
 ## Step 6 — When the review comes back
 
+**Entry point:** you paste the return command line — `/for-review triage {package-path} —
+findings returned at {return-path}`. Save the reviewer's reply to the reserved return path first
+(it did not exist until now), read the package alongside it, then triage. If the review arrives
+without the command line, or the return path was never reserved, save it as
+`review-returned-{topic}-{date}.md` beside the package and continue.
+
 **Do not accept-all.** See [`triage-returned-findings.md`](./triage-returned-findings.md) —
-read it before acting on a single finding.
+read it before acting on a single finding, and before stripping anything in this skill as
+clutter.
 
 ## Edge cases
 
