@@ -26,6 +26,16 @@ is normal.
 - It paraphrases something you already know — cross-check the index and your own principles.
 - It is a claim with no actionable edge: "AI will change work."
 
+### Step 2b — Strip tool-bound survivors to the core workflow
+
+See [capture-doctrine.md](../source-notes/capture-doctrine.md) §1b. For any survivor packaged in
+the source's own tool, repo, or paid tier, write its core workflow in one line (trigger →
+input → transform → output → where it lands), then ask whether it rebuilds on Claude, ChatGPT,
+or Gemini — the plans you already pay for (Adapt), or their free / ~$20 tiers, tagged `[Free]`
+/ `[Paid $20]` (Teach) — **in about two hours of your own work**. Gate the rebuild, not the
+vendor's tool, and state the hour estimate in the idea. Over two hours, or needs vendor-only
+parts → Inventory, with the blocker named.
+
 ### Step 3 — Route through the gates
 
 Each survivor goes through the three buckets. Exactly one, or Inventory.
@@ -54,7 +64,8 @@ section, and it is a line rather than a concept.
 ### Step 4 — Anti-fabrication
 
 Every idea traces back to specific lines in the source. If it is your extrapolation, it is
-not the source's idea — Inventory it.
+not the source's idea — Inventory it. A Step 2b rebuild is allowed: the idea must trace to the
+source, the rebuild need not, as long as the idea names the exact tool and steps.
 
 ### Step 5 — Blank beats wrong
 

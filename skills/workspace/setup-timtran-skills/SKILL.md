@@ -111,11 +111,10 @@ day plan is a record, not garbage: it gets moved, never deleted.
 
 ## Doing today
 - [ ]
-
-## Ruled dead — write owed
-<Things decided to be dead in conversation but not yet written into their project file.
-Drain this at the end of the day. See PRINCIPLES.md §8.>
 ```
+
+There is no "to be written later" section. A ruling is written into its project file the turn
+it is made (PRINCIPLES.md §8) — by whichever skill heard it, `checkin` included.
 
 ## Step 5 — library/
 

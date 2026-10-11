@@ -38,7 +38,20 @@ should".
 
 ### Diagnose a YouTube failure before declaring it
 
-"No transcript" is two different failures with different fixes.
+**Start with the cheap causes, and the network last.** Most "this video is unavailable" or
+"restricted" failures are not network blocks: they are a missing browser User-Agent
+(`--user-agent "<a current desktop browser string>"`) or a missing JavaScript runtime
+(`No supported JavaScript runtime could be found` → `--js-runtimes node`). Both look exactly
+like a network or policy block from outside, so rule them out — and rule out a wildcard in
+`--sub-langs`, which is never allowed (yt-dlp reads it as a regex and matches hundreds of
+auto-translated tracks) — before suggesting the network is to blame. The full order is in
+[`source-notes`](../source-notes/SKILL.md#getting-a-youtube-transcript).
+
+**A tool reporting no captions is not evidence that there are none.** It means only that the
+tool got nothing. Report which tools failed and how, and leave the cause undetermined until the
+check below settles it.
+
+"No transcript" is then two different failures with different fixes.
 
 ```bash
 yt-dlp --no-update --extractor-args "youtube:player_client=ios,tv,mweb" --list-subs "<URL>"
@@ -90,6 +103,9 @@ marquee thinker — stop and confirm:**
 `/tldr` deliberately captures nothing applicable. That is correct for a source you want to
 know about and wrong for one you want to use, and on a flagship source the difference is
 expensive — it forces a re-mine later.
+
+If the user has already said they just want the summary, they have made the call — proceed
+without asking.
 
 **Ask once, and only once.** If the next message pushes on something else — fixing the
 extraction, supplying a transcript, "try again" — that is the user proceeding with `/tldr`,

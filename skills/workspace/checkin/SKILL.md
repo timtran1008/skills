@@ -15,7 +15,13 @@ it is written.
 **Invoke:** `/checkin`
 
 Reads: every `projects/*/context.md`, the existing `today-tasks.md`, `PROFILE.md`.
-Writes: `today-tasks.md` only, and only after approval. **Never** `context.md`, never `log.md`.
+Writes, and only after approval: `today-tasks.md`, the archive copy of the outgoing one — and
+the supersession closes from Step 0d, struck through in the owning `context.md` with a dated
+`log.md` bullet, in the same session. Never `PROFILE.md`, never a skill.
+
+> **Anything actionable at check-in is done at check-in.** `/checkout` is not a queue for work
+> the check-in can already do. A close approved in the morning and left for the evening is a
+> close that tomorrow's plan can still re-carry.
 
 ## The session boundary
 
@@ -109,6 +115,11 @@ proposal, so each one can be vetoed individually.
 **Carried items are never silently triaged out** the way fresh backlog can be. If a carried
 item belongs to a non-focus project, list it anyway — one line is fine.
 
+**Show at most five.** The group lists the five most live carried items — verified against the
+scans, not copied forward blind — and below them one line: *"N others open — ask to see
+them."* That count is what keeps the rest from being silent: nothing is dropped, it is just not
+all pitched at once.
+
 **Count the carries.** Anything carried three days or more gets surfaced with its count
 attached. "Carried four days" is information, and it is the signal that something underneath is
 unruled and belongs in the project's Open questions rather than its task list. Never present a
@@ -130,22 +141,24 @@ For every item about to be carried, pull its entities — person, client, docume
 project, date, amount — and check them against everything the scans returned. Test each hit
 against the four shapes: entailment, replacement, reversal, duplicate.
 
-**Check-in cannot write `context.md` and closes nothing here.** What it does instead:
+**Check-in writes these closes itself, once the plan is approved.** Nothing is deferred to
+`/checkout`:
 
 - **Entailed dead** — the carried item cannot still be open, given what another line proves. Do
-  not schedule it as live work. It goes into the **"Ruled dead — write owed"** section of
-  `today-tasks.md` at Step 3, with the killing line quoted and its `path:line`. `/done` or
-  `/checkout` does the actual write.
+  not schedule it as live work. Show it **struck through** in a **"Closing on approval"** group
+  in the proposal, with the killing line quoted and its `path:line`, so it can be reversed in
+  one word. On approval, write the close into the owning `context.md` in the format of
+  supersession-sweep §5 — struck, cause named, dated — plus a new dated bullet in `log.md`.
 - **Likely dead** — ask, in one line, inside the plan proposal. **If it is ruled dead during
-  the check-in, it joins the same section.** A ruling heard here is never left in chat.
+  the check-in, it joins the same group and is written the same way.** A ruling heard here is
+  never left in chat.
 - Everything else carries as normal.
 
 If nothing is superseded, say "nothing superseded" in the proposal.
 
-> **The section is a file write, not a spoken group.** A kill that exists only in the
-> conversation is worse than no kill: the item stays `- [ ]` in its `context.md`, and tomorrow's
-> check-in re-carries it as live work having never heard the ruling. Saying it in the proposal
-> is not the deliverable. The section in `today-tasks.md` is.
+> **A kill that exists only in the conversation is worse than no kill.** The item stays `- [ ]`
+> in its `context.md`, and tomorrow's check-in re-carries it as live work having never heard the
+> ruling. Saying it in the proposal is not the deliverable. The close in `context.md` is.
 
 ## Step 1 — Ask about the day
 
@@ -217,8 +230,10 @@ Every block carries concrete sub-steps and a clear definition of done.
 
 ### Carried over
 - [ ] ... (carried 4 days — worth ruling rather than re-carrying?)
+- (five at most) — N others open, ask to see them.
 
-### Ruled dead — write owed
+### Closing on approval
+- ~~...~~ — killed by "<quoted line>" (path:line) — reverse if wrong
 - ... or "nothing superseded"
 
 ### Notes / conflicts
@@ -242,8 +257,11 @@ Then:
    yesterday. Move it, never delete it. If that filename exists, suffix `-2`, `-3`, and say so.
    If there is no existing file, say so in one line and continue.
 2. **Write the new `today-tasks.md`.**
+3. **Write the approved closes.** For every item in "Closing on approval" that was not
+   reversed: strike it in the owning `context.md` with its cause and today's date
+   (supersession-sweep §5), and append one dated bullet to that project's `log.md` naming what
+   was closed and why. `log.md` is append-only. Report each close in one line so it can still
+   be reversed.
 
-> **The "Ruled dead — write owed" section is mandatory** whenever Step 0d found something, or
-> something was ruled dead during this session. Each entry carries the item text, the killing
-> line quoted, its `path:line`, and the date. Omit the section only when both are empty. Until
-> `/done` or `/checkout` drains it, this is the *only* durable record of that ruling.
+> **The closes are written in this session, not owed to a later one.** Omit step 3 only when
+> nothing was superseded and nothing was ruled dead during the check-in — and say so.

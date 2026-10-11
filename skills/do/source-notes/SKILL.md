@@ -34,12 +34,13 @@ All three are mandatory. The first is the reason to run this instead of `/tldr`.
 ### Getting a YouTube transcript
 
 ```bash
-# 1. Does it have captions at all?
-yt-dlp --no-update --list-subs "<URL>"
+UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 
-# 2. Pull them
-yt-dlp --no-update --skip-download --write-auto-subs --sub-langs "en,en-orig" \
-  --sub-format vtt -o "src.%(ext)s" "<URL>"
+# 1. What caption tracks exist, and are any human-made?
+yt-dlp --no-update --user-agent "$UA" --js-runtimes node --list-subs "<URL>"
+
+# 2. Pull them — a fixed language list, never a wildcard
+yt-dlp --no-update --user-agent "$UA" --js-runtimes node --skip-download   --write-subs --write-auto-subs --sub-langs "en,en-orig,en-US,en-GB"   --sub-format vtt -o "src.%(ext)s" "<URL>"
 ```
 
 Auto-caption VTT is a rolling window — every line repeats the tail of the one before it.
@@ -47,10 +48,36 @@ Auto-caption VTT is a rolling window — every line repeats the tail of the one 
 already contained in the previous one), or the transcript triples in length and the notes
 inherit the repetition.
 
-If captions are genuinely disabled on that upload, a mirror of the same talk usually has
-them. Search by title and match on **duration within a couple of minutes** — that is what
-separates a full mirror from a clip. Record the mirror's ID in the file, because its
-timestamps will not match the URL you were given. Never use a clip or a highlights cut.
+**When extraction fails, work this order — and do not start at the network.**
+
+| # | Cause | Signature | Fix |
+|---|---|---|---|
+| 1 | No browser User-Agent | `Video unavailable`, or a "restricted — check with your network administrator" message | Pass `--user-agent` as above |
+| 2 | No JavaScript runtime | `No supported JavaScript runtime could be found`, then `Video unavailable` | `--js-runtimes node` (or deno / bun, whichever is installed) |
+| 3 | Wildcard in `--sub-langs` | The run writes no file on a video that clearly has captions | Use a fixed list — see below |
+| 4 | Caption listing throttled | Zero tracks on every client, or `HTTP Error 429`, while the video's metadata still lists caption tracks | Wait. A different route (e.g. the `youtube-transcript-api` Python package) may still work. Do not retry in a loop — retries *cause* this |
+| 5 | Genuinely no captions | The YouTube page's own **Show transcript** panel is empty too | Ask for a transcript |
+
+Causes 1 and 2 both look exactly like a network or policy block from the outside. A network
+diagnosis sends the user off to chase their router for nothing, so **never offer one until
+1–3 are ruled out.** This order exists because exactly that misdiagnosis once cost an hour:
+the evidence was a test that changed the User-Agent and the network route in one step and then
+credited the route.
+
+**Never pass a wildcard to `--sub-langs`.** `"en.*"` looks like a safe widening, but yt-dlp
+reads it as a regex — on a video whose base track is not English it matches the whole
+auto-*translated* set ("English from Chinese", "English from Portuguese", hundreds of rows).
+The run writes nothing, looks like a caption failure, and the request volume is what trips the
+throttle in row 4.
+
+**Prefer the human-made track; treat auto-caption quotes as approximate.** A manual track can
+hide under a randomised language code (`en-` plus a string of characters) that no fixed list
+matches — `--list-subs` shows it, and it is worth the extra call when all you hold is the
+auto track. Auto captions have no speaker labels and no sentence casing, and they garble proper
+nouns and set phrases. If the note is built on auto captions, or the transcript has no speaker
+labels on a multi-speaker source, **say so in the note and mark every quotation as
+approximate.** On a source whose value *is* its wording, that is a reason to go and get the
+manual track.
 
 If nothing works: stop and ask for the transcript. Do not proceed on metadata.
 
@@ -168,7 +195,7 @@ merge into an existing one, so each source stays attributable.
 Source: library/source-notes/YYYY-MM-DD_<slug>.md
 
 **Teach / Share**
-1. **[headline]** — [what someone can now do, and where you would use it].
+1. **[headline]** `[Free]` or `[Paid $20]` — [what someone can now do, and where you would use it].
 
 **Adapt**
 1. **[headline]** — [current way, better way, switch cost].

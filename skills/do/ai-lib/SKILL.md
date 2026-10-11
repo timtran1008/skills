@@ -21,10 +21,27 @@ if anything survived the gate — a block appended to `today-tasks.md`.
 | Input | Action |
 |---|---|
 | Article URL | Fetch it. Extract title, author, publication, full content. |
-| YouTube URL | Pull the full transcript with `yt-dlp` — never metadata only. |
+| YouTube URL | Pull the full transcript with `yt-dlp` — never metadata only. See below when it fails. |
 | Pasted text | Use as-is, then **ask where it came from** before writing anything. |
 | URL plus commentary | Fetch, and keep the commentary — it belongs in the body or in an idea, not in a section of its own. |
 | "Save what we discussed about X" | Distil the thread, then ask for the original source. |
+
+**When a YouTube pull fails,** work the order in
+[`source-notes`](../source-notes/SKILL.md#getting-a-youtube-transcript): browser User-Agent and
+JavaScript runtime first, a wildcard in `--sub-langs` next, the network **last** — the first two
+look exactly like a network block from outside. Auto captions carry no speaker labels, which
+matters when distilling a multi-speaker source: mark its quotes as approximate.
+
+Then sort the caption failure before reporting it — **never restate it as "the video has no
+subtitles"**, because no tool can establish that:
+
+- **Tracks listed** — `--list-subs` (or the video's metadata) shows caption tracks, yet the
+  fetch failed. A tooling failure: fix the fetch; there is nothing to ask the user for.
+- **Ambiguous** — no tracks listed. Either genuinely absent, or caption listing throttled by
+  repeated calls. Wait rather than retry in a loop, or check the page's own **Show transcript**
+  panel.
+
+Only then say what actually failed, and suggest `/source-notes` as the fallback.
 
 **Capture the publish date.** Byline, upload date, PDF date — it feeds the recency gate. If
 it is genuinely not stated, write `**Published:** unknown` and run the other gate criteria.
@@ -115,7 +132,7 @@ section. The short version:
 
 | Bucket | Passes only if |
 |---|---|
-| **Teach / Share** | Published within ~60 days · not already in `INDEX.md` · a non-technical person could do it with tools they already have · it lands in a real session or channel |
+| **Teach / Share** | Published within ~60 days · not already in `INDEX.md` · a non-technical person could do it with tools they already have, on a free or ~$20/month plan, tagged `[Free]` or `[Paid $20]` · it lands in a real session or channel |
 | **Adapt** | It names the specific documented current way (an SOP step, a named `SKILL.md`) · says what is worse about it · states the switch cost |
 | **Write** | It binds to a live section of something being written · it is an argument, story, or line, not a concept |
 
@@ -154,7 +171,7 @@ one per invocation, so sources stay attributable.
 Source: library/<folder>/<filename>.md
 
 **Teach / Share**
-1. **[headline]** — [what someone can now do, and where you would use it].
+1. **[headline]** `[Free]` or `[Paid $20]` — [what someone can now do, and where you would use it].
 
 **Adapt**
 1. **[headline]** — [current way, better way, switch cost].

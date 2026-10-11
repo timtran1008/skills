@@ -1,6 +1,6 @@
 # The supersession sweep
 
-Binding on `/done` and the reconcile step of `/checkout`.
+Binding on `/done`, the supersession check in `/checkin`, and the reconcile step of `/checkout`.
 
 **Adding new information is only half the write. The other half is closing what that
 information just killed.** A tracker that only ever grows is a tracker you have to reconcile
@@ -20,6 +20,22 @@ was in the same paragraph that opened the new one, and it went unused for weeks.
 The failure is structural, not a slip. Every step in a tracking skill is phrased additively —
 *append the entry, add the new items, mark the tasks named in this session*. None of them
 looks backward from the new fact to the old line.
+
+### The day file is never evidence about the live state file
+
+`today-tasks.md` is generated *from* the projects' `context.md` files. It is downstream of
+them, and it is never evidence about them. Before stating that an item is open, done, expired,
+or due, read the owning `context.md` line — not the copy inherited from yesterday's day file,
+not a sibling `log.md`, not any generated summary.
+
+The failure runs both ways. **False expiries:** a close-of-day sweep reads a stale line in the
+day file and kills an item the project file had already rescheduled. **False survivals:** a
+morning plan re-schedules two items hours after their `context.md` closed them, and puts back a
+task killed days earlier — complete with a reply-by date the kill had voided. In every case the
+day file was quoting a line the source of truth no longer held.
+
+So in §2, when a hit turns up in `today-tasks.md`, trace it to its `context.md` line before
+acting on it. The day file is where to *look*; the project file is what to *believe*.
 
 ## 1 — The trigger
 

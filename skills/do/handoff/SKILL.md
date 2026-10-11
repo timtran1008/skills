@@ -93,8 +93,10 @@ dead once the day it was written for has passed. Anything worth keeping beyond t
 `context.md` and `log.md`, which is `/done`'s job, not this file's.
 
 Every handoff carries the `**Expires:**` line under the title, dated the day after it was
-written. One exception: a handoff still named as a `**Source:**` by a live derived artifact
-stays until that artifact is finished.
+written. One exception: a handoff named in a structured `**Source:**` header by a *live*
+derived artifact is held past expiry until that artifact is finished — binning it would leave
+the live file pointing at nothing. **Only that header counts.** A passing mention in `log.md`,
+`context.md`, or anywhere else does not hold a handoff open.
 
 ⚠️ **This skill writes nothing but the one doc.** It does not retire its own past output — it
 cannot delete and must not move files. Expired handoffs are collected by whatever cleanup pass
@@ -105,10 +107,20 @@ existed, fifteen handoffs across six projects had piled up over three months wit
 rule, because the generator defined none. A file with no stated lifespan is a file nobody can
 throw away.
 
-## Step 2 — Report and stop
+## Step 2 — Report, print the launch commands, stop
 
 Print the path and a two or three line summary of what was captured. **Do not preview the
 full draft in chat** — it goes in the file precisely so it does not go in a context window.
+
+Then print **copy-paste launch commands** in one fenced block, so a fresh session boots
+straight from the document when pasted into a new terminal:
+
+- Start each line with `cd <workspace root> &&` — the paths in the document are relative to it.
+- One line per tool, the prompt double-quoted, no line breaks inside the quotes. The prompt is
+  the same for every tool; only the binary differs.
+- Prompt: `Read <relative doc path>, then continue from its '## Resume here' section. Treat that doc as the brief for this session.`
+- Emit all three — `claude "<prompt>"`, `codex "<prompt>"`, `gemini -i "<prompt>"` — unless a
+  target tool was named in the `/handoff` argument or the conversation; then emit only that one.
 
 Then stop. Nothing marked done, no tracking file updated, no next task proposed. If session
 state clearly is not persisted yet, one line — *"State not saved — run `/done` before you
@@ -117,5 +129,11 @@ close this session?"* — but do not act on it.
 ```
 ✓ Wrote projects/acme-rollout/handoff-2026-06-04-day3-prep.md
 Captured: current state, resume at the Day 3 outline, 2 gotchas, refs to context.md + log.md.
+
+Paste into a new terminal (pick your tool):
+cd ~/work && claude "Read projects/acme-rollout/handoff-2026-06-04-day3-prep.md, then continue from its '## Resume here' section. Treat that doc as the brief for this session."
+cd ~/work && codex "Read projects/acme-rollout/handoff-2026-06-04-day3-prep.md, then continue from its '## Resume here' section. Treat that doc as the brief for this session."
+cd ~/work && gemini -i "Read projects/acme-rollout/handoff-2026-06-04-day3-prep.md, then continue from its '## Resume here' section. Treat that doc as the brief for this session."
+
 State not saved this session — run /done before closing?
 ```

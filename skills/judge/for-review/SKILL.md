@@ -202,29 +202,41 @@ turns platitudes into usable critique. Always append:
 
 ### Required — the Return Handoff, pasted LAST in Section 3
 
-The review has to come *back*. Without an explicit instruction the reviewer ends on a verdict,
-and you are left re-explaining the whole gate by hand to whichever agent picks it up. Close the
-loop: the run ends by handing over a ready-to-paste line, not by trailing off.
+The review has to come *back*. Without an explicit instruction the reviewer ends on a verdict
+in chat, and you are left copying it out and re-explaining the whole gate by hand to whichever
+agent picks it up. Close the loop with a file, not a paste: the reviewer writes its findings to a
+path both sides agreed on in advance, and the chat reply shrinks to one line.
 
 Fill in the real paths and topic slug, then paste verbatim as the last block of Section 3:
 
 ```
 RETURN HANDOFF — do this after your review, without being asked.
 
-End your reply with the two things below, in this order, and nothing after them.
+Do NOT put the review in the chat for me to copy. Write it to a file.
 
-(1) A fenced block containing your review in full, ready for me to save as:
-    {return-path}
+(1) Write your review in full — every finding, every rebuttal log line, the coverage
+    receipt, the verdict — into ONE markdown file at exactly this path, next to the
+    package you were given:
+        {return-path}
+    Start the file with:
+        # Review Returned: {topic}
+        **Package:** {package-file-name}
+        **Reviewer:** [your name/model]   **Date:** [today]
+        **Headline:** [your one-line verdict]
+        **Findings:** [n] critical / [n] major / [n] minor
+        **Concession-rate self-audit:** [state it]
 
-(2) A fenced block containing exactly this line, for me to paste back:
+(2) If you cannot write to that path (no access to my file system), create the same
+    file as a download named exactly {return-file-name} and give me the link — I will
+    drop it next to the package. If you cannot create files at all, say so in one line
+    and put the full review in ONE fenced markdown block — never split it.
 
-    /for-review triage {package-path} — findings returned at {return-path}
-    Sort every finding into the 4-way triage before acting on any of it. Do not accept-all.
-    Reviewer's own headline: [your one-line verdict]
-    Findings: [n] critical / [n] major / [n] minor. Concession-rate self-audit: [state it].
-
-Fill the bracketed parts from your actual review. Do not alter the first two lines.
+(3) In chat, reply with one line only: "Written: [path or download link]". Nothing else.
 ```
+
+`{return-file-name}` is the bare filename of `{return-path}` (e.g.
+`review-returned-training-deck-2026-10-05.md`). Give `{return-path}` as an absolute path, so a
+reviewer with file access (a coding agent, a CLI tool) can write it directly.
 
 ## Step 4 — Assemble and save
 
@@ -265,24 +277,31 @@ Paste to the reviewer — attach the package file with it:
 /red-team [package-file-name] — [2-6 word topic]
 Attached file is self-contained; you have no prior context and should ask for none.
 Read Section 3 first: the Reviewer Contract and Finding Contract are binding, and the
-Return Handoff at the end tells you exactly what to send back.
+Return Handoff at the end says where to write your findings file.
 Red-team Section 2 against Section 1. Do not verify anyone's prior verdict — there isn't one.
 ```
 
 Then show the file. Ask: **"Review package ready. Want to check it before sending?"**
 Mark nothing done. Propose no next step.
 
-**Both legs are yours to carry.** The agent does not send to the reviewer, and the reviewer does
-not write to disk. You move the file and the line each way; the skill's job is to make each move
-a single paste.
+**The return leg is two words.** The agent does not send to the reviewer. The reviewer writes its
+findings to the reserved return path (or you drop its downloaded file there), then you tell the
+agent **"done, check"** — no copying review text, no pasting a command line.
 
 ## Step 6 — When the review comes back
 
-**Entry point:** you paste the return command line — `/for-review triage {package-path} —
-findings returned at {return-path}`. Save the reviewer's reply to the reserved return path first
-(it did not exist until now), read the package alongside it, then triage. If the review arrives
-without the command line, or the return path was never reserved, save it as
-`review-returned-{topic}-{date}.md` beside the package and continue.
+**Entry point:** you say **"done, check"** (or anything equivalent, or invoke
+`/for-review triage`). Resolve the package: the one built this session; otherwise the newest
+`for-review-*.md` whose reserved `review-returned-*` sibling now exists and has not yet been
+triaged — state which one before reading. Then locate the findings file:
+
+1. The reserved return path — the reviewer wrote it there, or you dropped it in.
+2. Your downloads folder, under `{return-file-name}` (also match `{stem} (1).md` and similar —
+   take the newest) → **move** it to the return path, and say which file moved, from where.
+3. Neither found → name the exact paths checked and stop. Only if the reviewer fell back to a
+   fenced block does the agent save your pasted text to the return path, verbatim.
+
+Read the package alongside it, then triage.
 
 **Do not accept-all.** See [`triage-returned-findings.md`](./triage-returned-findings.md) —
 read it before acting on a single finding, and before stripping anything in this skill as

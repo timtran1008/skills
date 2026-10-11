@@ -127,6 +127,33 @@ does, because a blank is at least visibly missing.
 
 ---
 
+## Gate the idea, not the vendor
+
+**The gap:** the gates tested the source's *packaging*. A good workflow shown inside a CLI tool
+or a paid demo died at the Teach gate ("technical" or "paid tier") or at anti-fabrication, where
+any rebuild counted as extrapolation. And a genuinely new capability — something with no current
+way of doing it to compare against — had no bucket at all.
+
+**The question that closed it:** can the presented workflow be stripped to its core, so the same
+result is reproducible with the general-purpose assistants already on hand rather than the
+vendor's tool?
+
+**Tightened the same day.** With an AI helping, nearly anything can be replicated — so
+replicability alone admits everything. The actual gate is a **build budget of about two hours**.
+Over budget, it stays in Inventory.
+
+**Teach tier widened from free-only to free or ~$20/month.** Many people now pay for one AI
+subscription, mostly at that price point. Each Teach idea is tagged `[Free]` or `[Paid $20]` so
+the reader knows which they need. Anything above $20/month still fails — premium-tier demos stay
+out.
+
+**Guardrails that keep padding out:** the *idea* must still trace to source lines (the rebuild is
+yours; the idea is not invented); a Teach rebuild must run on the tier the tag names, not on
+whatever premium seat you happen to hold; a new-capability Adapt idea must name a real landing
+spot in live work. Rule → `capture-doctrine.md` §1b, in the `source-notes` skill.
+
+---
+
 ## Backlog reachability
 
 Review-status banners start on the day you adopt them. Everything written before that is

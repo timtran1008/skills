@@ -88,11 +88,14 @@ position is not the outcome.
 > **The residue list is uncapped** — an explicit exception to the cap-at-three rule on surfaced
 > batches. Present all of it in one pass.
 
-**First, drain "Ruled dead — write owed".** If `today-tasks.md` carries that section, each
-entry is a ruling already made with no write behind it. Close each — strikethrough, named
-cause, date, in the owning `context.md` — and clear the section. **Never re-ask for these rulings.**
+**The residue is its own message, and the writes wait for the reply.** Number each question and
+phrase it as an A/B choice that names both outcomes — *"A: close as done · B: carry to
+tomorrow"* — so a terse reply maps to exactly one write. Nothing else goes in that message: no
+report, no other prompt. The failure this prevents is concrete — when the questions share a
+message with something easier to answer, the easy thing gets answered, the questions get
+skipped, and the unanswered items are written as "carry" before anyone has seen them.
 
-Then resolve **every** remaining unchecked item into one of four outcomes. None may be left
+Then resolve **every** unchecked item into one of these outcomes. None may be left
 sitting only in `today-tasks.md`:
 
 - **Done** (confirmed by the user) → `[x]` in `today-tasks.md`, updated in the owning
