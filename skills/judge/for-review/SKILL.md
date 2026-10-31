@@ -147,8 +147,9 @@ An empty list with no receipt is not a valid review.
 ## Your Task
 
 Red-team the deliverable above. The author produced it with an AI collaborator, so you
-have no stake in it. Your job is to challenge it: run a pre-mortem (assume it failed with
-its audience, and say why), then check each claim against the context given.
+have no stake in it. Your job is to challenge it: run a pre-mortem (Gary Klein, HBR 2007:
+assume it failed with its audience, and say why), then check each claim against the
+context given.
 
 **Do this:**
 - Challenge the logic, structure, and completeness
@@ -187,7 +188,13 @@ turns platitudes into usable critique. Always append:
 - [anything flagged as uncertain in Section 1 - is it visible in the deliverable itself,
    or only in the brief]
 - [anything in the deliverable that contradicts the stated context or constraint]
+- [the 3 questions or objections the named recipient will raise on first read - does the
+   deliverable answer each?]
 ```
+
+**The recipient's objections** (murder-board practice): before writing the list, name the
+recipient and write the 3 questions or objections they will raise on first read. They go in
+as the last bullet, specific, never "the reader may have questions".
 
 **How to find the right 6-10:**
 

@@ -40,8 +40,14 @@ is checking a *different* model's output.
 1. **Identify the source of truth.** The brief, spec, requirement, or context file. If none
    is provided, ask. If none exists, state that the check is requirement-bounded only, and
    proceed with what's available.
+   **External claims with no supplied source are traced, not skipped** (SIFT, Mike
+   Caulfield): Stop · Investigate the source · Find better coverage · Trace the claim to
+   its primary source. An external number, quote or study passes only when its primary
+   source is found and named; otherwise it is unverified.
 2. **Layer 1.** Extract every number, date, name, quantity, and unit from the output.
    Cross-check each against the source. Flag mismatches and anything unverifiable.
+   **Recompute every total, percentage and sum from its parts** (audit footing and
+   cross-footing). A total that matches the source but does not sum is a flag.
 3. **Layer 2.** Check every required element — sections, salutation, sign-off, references,
    attachments, formatting rules, mandated terminology. Flag what's missing or misapplied.
 4. **Layer 3.** Read top to bottom. Flag logical jumps (A to C with no B), internal
