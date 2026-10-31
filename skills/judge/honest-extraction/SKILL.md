@@ -24,6 +24,12 @@ difference visible on every line.
 4. Require short, auditable evidence for every non-trivial claim.
 5. Keep extracted facts separate from interpretation and recommendations.
 6. If the source is ambiguous or self-contradictory, surface that — never resolve it silently.
+7. **Long source (≈20+ pages or 1h+ of transcript): work section by section.** Split it into
+   sections, extract each in turn, and end with a coverage line (sections × fields read).
+   Models under-use the middle of long inputs (Liu et al. 2023, "Lost in the Middle").
+8. **Verbatim-quote check before saving** (the confirmability audit trail, Lincoln & Guba,
+   *Naturalistic Inquiry*). Search the source for every quoted `evidence` string, character
+   for character. A quote not found becomes `inferred`, reason "paraphrase, not in source".
 
 ## Core rules
 
@@ -56,9 +62,10 @@ Save as `{source-filename}-extraction.md` next to the source.
 Use or adapt when precision matters:
 
 ```xml
-<role>
-You are performing a high-accuracy extraction and analysis task.
-</role>
+<task>
+Extract the fields below from the source material only, with every value tied to evidence
+and every evidence quote copied verbatim from the source.
+</task>
 
 <rules>
 Core rule:
