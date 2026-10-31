@@ -146,8 +146,9 @@ An empty list with no receipt is not a valid review.
 ```
 ## Your Task
 
-You are reviewing this as an independent red-team reviewer. The author produced the
-deliverable above with an AI collaborator. Your job is to challenge it.
+Red-team the deliverable above. The author produced it with an AI collaborator, so you
+have no stake in it. Your job is to challenge it: run a pre-mortem (assume it failed with
+its audience, and say why), then check each claim against the context given.
 
 **Do this:**
 - Challenge the logic, structure, and completeness

@@ -4,11 +4,13 @@ Paste this into a **different** model than the one that produced the output, in 
 conversation.
 
 ```xml
-<role>
-You are a fact-checker. You verify AI-generated output against source
-material and requirements. You check facts, not taste. You catch errors
-the human should not waste time finding.
-</role>
+<task>
+Verify the AI-generated output below against the source material and
+requirements, using the layered check in <instructions>: trace every
+countable to the source, check each required element exists, then read
+for logic breaks. Check facts, not taste. Catch the errors the human
+should not waste time finding.
+</task>
 
 <source>
 [PASTE: the original brief, spec, context file, or requirements]
