@@ -3,7 +3,7 @@ name: source-notes
 disable-model-invocation: true
 description: >
   Turn a URL, file, pasted text, or video into a three-layer note — what you can use from it,
-  a full structured extraction, and a Cornell-style recall sheet — saved to your library and
+  every formula and flow it states in notation, and a full structured extraction — saved to your library and
   pushed to today's tasks. Use when you intend to act on the source, not just know about it.
 ---
 
@@ -15,8 +15,8 @@ things at once, because they answer three different questions:
 | Layer | Answers |
 |---|---|
 | **Learn / Adapt** | What can I actually use from this, and where? |
+| **Models** | What formulas, flows and frameworks does it run on (`A = B + C`, `A → B → C`)? |
 | **Structured Notes** | What did it say, in full, so I never re-read the original? |
-| **Cornell Notes** | Do I understand it well enough to explain it? |
 
 All three are mandatory. The first is the reason to run this instead of `/tldr`.
 
@@ -129,7 +129,33 @@ Filter through the roles in `PROFILE.md`, not through generic interestingness. A
 manufactured angle**: if the source is not about the thing you are currently preoccupied
 with, it is not about it. A passing mention is not a theme.
 
-### Section 2 — Structured Notes
+### Section 2 — Models
+
+Every model the source states (formula, flow, process, framework, ratio, quadrant), pulled out
+in compact notation so the source's machinery reads at a glance. It sits directly under
+Learn / Adapt, because it is the part you will actually re-read.
+
+```markdown
+## Models
+
+1. **[Name the source uses, or a plain label]** — `satisfaction = haves ÷ wants` — [what it predicts or prescribes] ([speaker], [timestamp/page])
+2. **[Name]** — `fear → avoidance → shrinking comfort zone → more fear` — [one line]
+3. **[Name]** — `conflict × honesty`: high/high = happiest long marriages · low/low = lasting but unhealthy — [one line]
+```
+
+Notation: `=` `+` `−` `×` `÷` for formulas, `→` for flows, `A × B` plus the named cells for
+2×2s, numbered `1 → 2 → 3` for multi-step processes. One model per line; a model that needs a
+paragraph is a Structured Notes concept.
+
+- **Source-stated only.** A model the source states, or states in words that compress cleanly
+  into notation (mark those `(compressed)`). A model assembled from scattered points is
+  synthesis, not extraction, and stays out.
+- **Every model, exhaustively**, Q&A included. A repeated model is listed once.
+- **Zero is a valid count.** Write `None stated.` so the absence shows.
+- The same model also lives in Structured Notes with its full explanation: this section is the
+  index, Structured Notes the depth.
+
+### Section 3 — Structured Notes
 
 The bar: a reader who sees only these notes can reconstruct the argument, cite its numbers,
 explain its frameworks to someone else, and name the tools it named.
@@ -166,24 +192,6 @@ Extraction rules:
    months out because three months now equals three years previously" beats "quarterly planning."
 6. **Speaker attribution.** Multiple speakers — record who said what for the key claims.
 
-### Section 3 — Cornell Notes
-
-```markdown
-## Cornell Notes
-
-| Cue / Question | Notes |
-|---|---|
-| [question testing a key concept] | [concise answer from the source] |
-
-### Summary (5-7 sentences)
-[A narrative, not a topic list — the argument, its evidence, its conclusion, as you would
-brief someone in 60 seconds.]
-```
-
-12-20 cue questions. Questions test **understanding, not recall**: *"What is X?"* is weak,
-*"Why does X lead to Y instead of Z?"* is strong. Mix definitional, causal, procedural,
-comparative, and evaluative.
-
 ## Final step — push the steals to today-tasks.md
 
 Mandatory unless zero survived. Append a dated block at the end of `today-tasks.md`; never
@@ -217,7 +225,7 @@ definition. Leave the H1 clean so the banner has somewhere to go.
 
 - **No shallow summaries.** A concept mentioned is a concept explained.
 - **No missing names, no missing numbers.**
-- Rough length: Structured Notes 1,500-3,000 words by source density; Cornell 500-800;
-  Learn/Adapt 300-500.
+- Rough length: Structured Notes 1,500-3,000 words by source density; Models as many lines as
+  the source has models; Learn/Adapt 300-500.
 - **Never infer a video's content from its metadata.** No transcript means stop and ask.
 - Print the saved path in chat. Do not dump the note body — the file is where it gets read.

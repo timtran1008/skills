@@ -48,3 +48,4 @@ So a future session doesn't strip them as clutter.
 | Coverage receipt | Both failure directions: manufactured findings to fill a quota, and lazy "looks fine" |
 | Field-norm grounding | Over-correcting toward standards nobody in your actual field applies |
 | Sub-claim decomposition | Over-revising in response to one vague complaint; reading a quiet room as endorsement |
+| Canaries (Step 2b) + recall score | Trusting a short "no major issues" review that may have skimmed: its silence has no measured worth without a known answer |

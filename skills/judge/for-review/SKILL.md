@@ -66,8 +66,37 @@ Rules:
 
 - If it's a file: read it, embed it verbatim.
 - If it was produced in conversation: copy the final version exactly.
-- **Do not edit, improve, polish, or summarise.** Verbatim only.
+- **Do not edit, improve, polish, or summarise.** Verbatim only, apart from the Step 2b canaries.
 - Wrap it in a clear delimiter so the reviewer knows where it starts and ends.
+
+## Step 2b — Plant the canaries (default on)
+
+A short, clean review looks the same whether the draft is clean or the reviewer skimmed.
+Canaries give the review a known answer: plant errors whose location you know, and the
+review's recall on them measures how much its silence is worth.
+
+Skip only when the user says "no canary", or the deliverable is too short to hide three errors
+in (under ~300 words). Say which, in the Step 5 reply.
+
+1. **Plant exactly 3, in the package copy of Section 2 only**, one of each type:
+   - **Number mismatch** — a figure that contradicts the same figure elsewhere in the
+     deliverable or in Section 1 (a sample size, a total, a date).
+   - **Claim drift** — a sentence that overstates what the deliverable's own evidence supports
+     ("suggests" → "proves", correlational stated as causal, a scope widened).
+   - **Citation error** — a wrong year or author on a reference that appears correctly
+     elsewhere. No citations → a name, title or date inconsistency instead.
+2. **Every canary is catchable from the package alone**, by internal contradiction or against
+   Section 1. A canary that needs outside knowledge measures the reviewer's memory, not its reading.
+3. **Plausible and spread out** — one per third of the deliverable, in its voice, so it reads as
+   a real slip.
+4. **Write the key** to `~/.canary-keys/canary-key-{topic}-{YYYY-MM-DD}.md` (same `-v2` suffix
+   as the package), outside the project folder, because a file-access reviewer works in that
+   folder. Per canary: type, location (heading + sentence), original text, planted text.
+5. **The key and the word "canary" stay out of the package and the paste line.** A reviewer
+   told errors were planted hunts for plants instead of reviewing the draft — the same
+   anchoring Step 0b guards against.
+6. **The source file is never touched.** Canaries live in the package copy only; the clean
+   draft stays the file that gets fixed and sent on.
 
 ## Step 3 — Section 3: The Ask
 
@@ -289,6 +318,9 @@ Return Handoff at the end says where to write your findings file.
 Red-team Section 2 against Section 1. Do not verify anyone's prior verdict — there isn't one.
 ```
 
+Above the paste block, one line: `Canary key: [key path]` (or why the canaries were skipped) —
+never inside the paste block.
+
 Then show the file. Ask: **"Review package ready. Want to check it before sending?"**
 Mark nothing done. Propose no next step.
 
@@ -309,7 +341,17 @@ triaged — state which one before reading. Then locate the findings file:
 3. Neither found → name the exact paths checked and stop. Only if the reviewer fell back to a
    fenced block does the agent save your pasted text to the return path, verbatim.
 
-Read the package alongside it, then triage.
+Read the package alongside it, then **score the canaries before any other finding**:
+
+- For each key entry, a returned finding that points at that location and names the error =
+  caught. Report `Canaries: N/3 caught`, naming any missed.
+- **3/3** → triage normally; the review's silence elsewhere carries weight.
+- **Under 3/3** → the "no issue" parts of this review are unproven; rerun at higher effort or
+  with another model before trusting them. Real findings still get triaged.
+- Caught canaries are dropped from the finding list — they are not fixes. Fixes go to the clean
+  source file, never the package.
+
+Then triage.
 
 **Do not accept-all.** See [`triage-returned-findings.md`](./triage-returned-findings.md) —
 read it before acting on a single finding, and before stripping anything in this skill as
@@ -324,3 +366,4 @@ clutter.
 | Product is a file | Read it, embed verbatim, include the path in the brief. |
 | Thin conversation context | Reconstruct what exists, flag the gaps explicitly for the reviewer. |
 | "Skip the context" | Still include 2-3 lines. The reviewer needs something. |
+| Package forwarded by mistake | The package is never the copy that goes on. Send the clean source; the package carries 3 deliberate errors. |
