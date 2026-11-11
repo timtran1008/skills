@@ -20,7 +20,7 @@ is checking a *different* model's output.
 |---|---|---|
 | **Purpose** | Extract facts FROM a source | Verify output AGAINST a source |
 | **Direction** | source → structured data | output + source → pass/flag report |
-| **Labels** | explicit / inferred / missing / conflicted | pass / flag / missing / conflict |
+| **Labels** | explicit / inferred / missing / conflicted | 🟢 / 🔴 / 🟡 |
 | **When** | Before the work — understand the inputs | After the work — verify the outputs |
 
 "What does this source say?" → `honest-extraction`.
@@ -42,12 +42,12 @@ is checking a *different* model's output.
    proceed with what's available.
    **External claims with no supplied source are traced, not skipped** (SIFT, Mike
    Caulfield): Stop · Investigate the source · Find better coverage · Trace the claim to
-   its primary source. An external number, quote or study passes only when its primary
-   source is found and named; otherwise it is unverified.
+   its primary source. An external number, quote or study is 🟢 only when its primary
+   source is found and named; otherwise it is 🟡 (unverified).
 2. **Layer 1.** Extract every number, date, name, quantity, and unit from the output.
    Cross-check each against the source. Flag mismatches and anything unverifiable.
    **Recompute every total, percentage and sum from its parts** (audit footing and
-   cross-footing). A total that matches the source but does not sum is a flag.
+   cross-footing). A total that matches the source but does not sum is 🔴.
 3. **Layer 2.** Check every required element — sections, salutation, sign-off, references,
    attachments, formatting rules, mandated terminology. Flag what's missing or misapplied.
 4. **Layer 3.** Read top to bottom. Flag logical jumps (A to C with no B), internal
@@ -66,7 +66,15 @@ is checking a *different* model's output.
 - **Fixes come after the report, never inside it.** Deliver the report first. Propose fixes
   only if asked.
 - Use direct quotes, line numbers, or section references as evidence.
-- No confidence scores. Status labels only: `pass`, `flag`, `missing`, `conflict`.
+- No confidence scores. Every Status cell is one colour from the status key, the emoji alone.
+
+## Status key
+
+| Colour | Means |
+|---|---|
+| 🟢 | Matches the source; for an external claim, the primary source is named in the Note |
+| 🔴 | Wrong against the source: mismatch, contradiction, or a required element absent; name which in the Note |
+| 🟡 | The human decides: unverified (no primary source found), interpretation or addition beyond the source, layer 4 |
 
 ## Output
 
@@ -94,10 +102,10 @@ is checking a *different* model's output.
 |---|---|
 
 ## Summary
-- Layer 1: X/Y passed
-- Layer 2: X/Y present
-- Layer 3: X flags
-- Layer 4: X items for review
+- Layer 1: 🟢 X · 🔴 X · 🟡 X
+- Layer 2: 🟢 X · 🔴 X · 🟡 X
+- Layer 3: 🔴 X · 🟡 X
+- Layer 4: 🟡 X items for review
 ```
 
 Save as `{source-filename}-factcheck.md` next to the file checked.

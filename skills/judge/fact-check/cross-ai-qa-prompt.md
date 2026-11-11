@@ -48,7 +48,9 @@ human: "Is this what you intended?"
 
 Output format: a structured table per layer.
 For each flag: quote the specific text, cite the source contradiction,
-and label status as pass / flag / missing / conflict.
+and mark status with the emoji alone, no word: 🟢 = matches source ·
+🔴 = mismatch, contradiction, or missing element · 🟡 = unverified,
+interpretation, or a judgment call for the human.
 
 End with a summary count per layer.
 </instructions>
